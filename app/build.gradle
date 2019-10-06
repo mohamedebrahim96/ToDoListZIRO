@@ -48,6 +48,14 @@ dependencies {
 
     // Optional - ReactiveStreams support for LiveData
     implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
+    
+    // Room
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
+    // Optional - RxJava support for Room
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
 
+    // Optional - Guava support for Room, including Optional and ListenableFuture
+    implementation "android.arch.persistence.room:guava:$room_version"
 }
