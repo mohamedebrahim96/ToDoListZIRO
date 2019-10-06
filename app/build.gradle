@@ -36,5 +36,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
 
+    // View model
+    implementation "android.arch.lifecycle:viewmodel:$lifecycle_version"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+
+    // Live data
+    implementation "android.arch.lifecycle:livedata:$lifecycle_version"
+
+    // Annotations for kapt
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+
+    // Optional - ReactiveStreams support for LiveData
+    implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
+
 
 }
