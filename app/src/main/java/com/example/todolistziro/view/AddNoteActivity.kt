@@ -4,35 +4,30 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
-import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.todolistziro.R
+import kotlinx.android.synthetic.main.activity_add_note.*
 
 class AddNoteActivity : AppCompatActivity() {
-
-    private var editTextTitle: EditText? = null
-    private var editTextDescription: EditText? = null
-    private var numberPickerPriority: NumberPicker? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
-        
+
         // Set up the values
-        numberPickerPriority!!.minValue = 1
-        numberPickerPriority!!.maxValue = 10
+        numberPickerPriority?.minValue = 1
+        numberPickerPriority?.maxValue = 10
 
         getSupportActionBar()!!.setHomeAsUpIndicator(R.drawable.ic_close)
         setTitle("Add Note")
     }
 
     private fun saveNote() {
-        val title = editTextTitle!!.text.toString().trim { it <= ' ' }
-        val description = editTextDescription!!.text.toString().trim { it <= ' ' }
-        val priority = numberPickerPriority!!.value
+        val title = editTextTitle?.text.toString().trim { it <= ' ' }
+        val description = editTextDescription?.text.toString().trim { it <= ' ' }
+        val priority = numberPickerPriority?.value
 
         if (title.isEmpty() || description.isEmpty()) {
             Toast.makeText(

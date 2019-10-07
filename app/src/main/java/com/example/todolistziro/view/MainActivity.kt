@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setAdapter(adapter)
 
 
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
+        noteViewModel = ViewModelProviders.of(this@MainActivity).get(NoteViewModel::class.java)
         noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>>{
             override fun onChanged(@Nullable notes: List<Note>) {
                 // Update recycler view

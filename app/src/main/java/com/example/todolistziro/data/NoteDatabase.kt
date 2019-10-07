@@ -30,21 +30,17 @@ abstract class NoteDatabase : RoomDatabase() {
     }
 
     companion object {
-
-        private var instance: NoteDatabase? = null
-
+        var instance: NoteDatabase? = null
         @Synchronized
         fun getInstance(context: Context): NoteDatabase {
             if (instance == null) {
                 instance = Room.databaseBuilder(
                     context.applicationContext,
-                    NoteDatabase::class.java, "note_database"
-                )
+                    NoteDatabase::class.java, "note_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build()
             }
-
             return instance as NoteDatabase
         }
 

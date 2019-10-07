@@ -10,7 +10,7 @@ import com.example.todolistziro.data.NoteRepository
 
 class NoteViewModel(@NonNull application: Application) : AndroidViewModel(application) {
 
-    private val repository: NoteRepository
+    val repository: NoteRepository
     val allNotes: LiveData<List<Note>>
 
     init {
