@@ -9,11 +9,13 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistziro.R
 import com.example.todolistziro.data.Note
+import com.example.todolistziro.viewmodel.NoteViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
 
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
-        noteViewModel.getAllNotes().observe(this, object : Observer<List<Note>>() {
+        noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>>{
             override fun onChanged(@Nullable notes: List<Note>) {
                 // Update recycler view
                 adapter.setNotes(notes)

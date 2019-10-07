@@ -12,10 +12,7 @@ import java.util.ArrayList
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
 
-
     private var notes: List<Note> = ArrayList()
-
-
 
     @NonNull
     override fun onCreateViewHolder(@NonNull viewGroup: ViewGroup, position: Int): NoteHolder {
