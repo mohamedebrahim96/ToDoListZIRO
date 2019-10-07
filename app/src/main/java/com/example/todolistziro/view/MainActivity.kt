@@ -1,19 +1,21 @@
 package com.example.todolistziro.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistziro.R
 import com.example.todolistziro.data.Note
+import com.example.todolistziro.viewmodel.NoteViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setAdapter(adapter)
 
 
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
-        noteViewModel.getAllNotes().observe(this, object : Observer<List<Note>>() {
+        noteViewModel = ViewModelProviders.of(this@MainActivity).get(NoteViewModel::class.java)
+        noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>>{
             override fun onChanged(@Nullable notes: List<Note>) {
                 // Update recycler view
                 adapter.setNotes(notes)
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(@NonNull viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                noteViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()))
+                noteViewModel!!.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()))
                 Toast.makeText(this@MainActivity, "Note deleted", Toast.LENGTH_SHORT).show()
             }
         }).attachToRecyclerView(recyclerView)
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.delete_all_notes -> {
-                noteViewModel.deleteAllNotes()
+                noteViewModel!!.deleteAllNotes()
                 Toast.makeText(this, "All notes deleted", Toast.LENGTH_SHORT).show()
                 return true
             }
@@ -83,16 +85,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, @Nullable data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int,data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            val title = data.getStringExtra(AddNoteActivity.EXTRA_TITLE)
-            val description = data.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION)
-            val priority = data.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 1)
+            val title = data!!.getStringExtra(AddNoteActivity.EXTRA_TITLE)
+            val description = data!!.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION)
+            val priority = data!!.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 1)
 
             val note = Note(title, description, priority)
-            noteViewModel.insert(note)
+            noteViewModel!!.insert(note)
 
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show()
         } else {

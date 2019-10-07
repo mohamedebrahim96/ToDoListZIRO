@@ -8,16 +8,11 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistziro.R
 import com.example.todolistziro.data.Note
-
-
 import java.util.ArrayList
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
 
-
-    private var notes: List<Note> = ArrayList<Note>()
-
-
+    private var notes: List<Note> = ArrayList()
 
     @NonNull
     override fun onCreateViewHolder(@NonNull viewGroup: ViewGroup, position: Int): NoteHolder {
@@ -28,9 +23,9 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
 
     override fun onBindViewHolder(@NonNull noteHolder: NoteHolder, position: Int) {
         val currentNote = notes[position]
-        noteHolder.textViewTitle.setText(currentNote.getTitle())
-        noteHolder.textViewDescription.setText(currentNote.getDescription())
-        noteHolder.textViewPriority.setText(String.valueOf(currentNote.getPriority()))
+        noteHolder.textViewTitle.setText(currentNote.title)
+        noteHolder.textViewDescription.setText(currentNote.description)
+        noteHolder.textViewPriority.setText(currentNote.priority.toString())
     }
 
     fun setNotes(notes: List<Note>) {
@@ -47,9 +42,9 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
     }
 
     inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textViewTitle: TextView
-        private val textViewDescription: TextView
-        private val textViewPriority: TextView
+        val textViewTitle: TextView
+        val textViewDescription: TextView
+        val textViewPriority: TextView
 
         init {
             textViewTitle = itemView.findViewById(R.id.text_view_title)
