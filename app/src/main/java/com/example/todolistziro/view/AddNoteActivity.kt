@@ -11,23 +11,21 @@ import kotlinx.android.synthetic.main.activity_add_note.*
 
 class AddNoteActivity : AppCompatActivity() {
 
-
+    var priority:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
 
-        // Set up the values
-        numberPickerPriority?.minValue = 1
-        numberPickerPriority?.maxValue = 10
-
         getSupportActionBar()!!.setHomeAsUpIndicator(R.drawable.ic_close)
-        setTitle("Add Note")
+        setTitle("Add Task")
+        work.setOnClickListener { priority = 0 }
+        personal.setOnClickListener { priority = 1 }
+        health.setOnClickListener { priority = 2 }
     }
 
     private fun saveNote() {
         val title = editTextTitle?.text.toString().trim { it <= ' ' }
         val description = editTextDescription?.text.toString().trim { it <= ' ' }
-        val priority = numberPickerPriority?.value
 
         if (title.isEmpty() || description.isEmpty()) {
             Toast.makeText(

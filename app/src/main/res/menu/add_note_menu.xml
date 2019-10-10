@@ -6,6 +6,12 @@
         android:id="@+id/save_note"
         android:icon="@drawable/ic_save"
         android:title="Save"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/save_note2"
+        android:icon="@drawable/ic_save"
+        android:title="Log out"
+        app:showAsAction="never"
         />
 </menu>
