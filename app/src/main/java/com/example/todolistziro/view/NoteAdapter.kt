@@ -4,15 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistziro.R
 import com.example.todolistziro.data.Note
+import com.example.todolistziro.viewmodel.NoteViewModel
 import java.util.ArrayList
 
-class NoteAdapter(val context: Context) : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
-
+class NoteAdapter(val context: Context,var noteViewModel:NoteViewModel?) : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
     private var notes: List<Note> = ArrayList()
 
     @NonNull
@@ -31,7 +32,9 @@ class NoteAdapter(val context: Context) : RecyclerView.Adapter<NoteAdapter.NoteH
         noteHolder.priority.setText(getType(currentNote.priority))
         noteHolder.priority.setCompoundDrawablesWithIntrinsicBounds(getDrawable(currentNote.priority),0,0,0)
 
-
+        noteHolder.close.setOnClickListener {
+            noteViewModel!!.delete(getNoteAt(position))
+        }
     }
 
     fun getColor(priority: Int):Int {
@@ -80,18 +83,21 @@ class NoteAdapter(val context: Context) : RecyclerView.Adapter<NoteAdapter.NoteH
     }
 
     inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val textViewTitle: TextView
         val priority: TextView
         val textViewDescription: TextView
         val type: View
+        val close: ImageView
 
         init {
             textViewTitle = itemView.findViewById(R.id.text_view_title)
             textViewDescription = itemView.findViewById(R.id.text_view_description)
             type = itemView.findViewById(R.id.type)
             priority = itemView.findViewById(R.id.priority)
-
+            close = itemView.findViewById(R.id.close)
         }
+
 
     }
 }

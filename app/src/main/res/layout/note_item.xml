@@ -26,6 +26,7 @@
             android:layout_alignParentRight="true"
             android:padding="8dp"
             android:src="@drawable/ic_close"
+            android:id="@+id/close"
             />
 
         <TextView

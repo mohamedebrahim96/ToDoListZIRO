@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.setLayoutManager(LinearLayoutManager(this))
         recyclerView.setHasFixedSize(true)
+        noteViewModel = ViewModelProviders.of(this@MainActivity).get(NoteViewModel::class.java)
 
-        val adapter = NoteAdapter(this)
+        val adapter = NoteAdapter(this,noteViewModel)
         recyclerView.setAdapter(adapter)
 
 
-        noteViewModel = ViewModelProviders.of(this@MainActivity).get(NoteViewModel::class.java)
         noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>>{
             override fun onChanged(@Nullable notes: List<Note>) {
                 // Update recycler view
