@@ -1,36 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
-    >
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextTitle"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Title"
-        android:inputType="text" />
+        android:background="@android:color/white"
+        android:elevation="0dp"
+        android:layout_height="60dp"
+        app:cardCornerRadius="10dp">
 
-    <EditText
-        android:id="@+id/editTextDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description"
-        android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Name your task"
+            android:inputType="text" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/orange"
+            />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Priority:"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
+        android:text="Choose Category"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        />
-    <NumberPicker
-        android:id="@+id/numberPickerPriority"
+        android:textColor="@color/gray" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:drawableStart="@drawable/ic_circle_orange"
+        android:drawablePadding="5dp"
+        android:text="Work" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:drawableStart="@drawable/ic_circle_purple"
+        android:drawablePadding="5dp"
+        android:text="Personal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:drawableStart="@drawable/ic_circle_blue"
+        android:drawablePadding="5dp"
+        android:text="Health" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:elevation="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="160dp"
+        app:cardCornerRadius="10dp">
+
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Description"
+            android:gravity="top"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/white"
+            android:inputType="textMultiLine" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/orange"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:background="@color/orange"
+        android:text="Save Task"
         />
 </LinearLayout>

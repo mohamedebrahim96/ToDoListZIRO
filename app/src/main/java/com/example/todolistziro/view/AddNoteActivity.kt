@@ -16,18 +16,14 @@ class AddNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
 
-        // Set up the values
-        numberPickerPriority?.minValue = 1
-        numberPickerPriority?.maxValue = 10
-
         getSupportActionBar()!!.setHomeAsUpIndicator(R.drawable.ic_close)
-        setTitle("Add Note")
+        setTitle("Add Task")
     }
 
     private fun saveNote() {
         val title = editTextTitle?.text.toString().trim { it <= ' ' }
         val description = editTextDescription?.text.toString().trim { it <= ' ' }
-        val priority = numberPickerPriority?.value
+        //val priority = numberPickerPriority?.value
 
         if (title.isEmpty() || description.isEmpty()) {
             Toast.makeText(
@@ -40,7 +36,7 @@ class AddNoteActivity : AppCompatActivity() {
         val data = Intent()
         data.putExtra(EXTRA_TITLE, title)
         data.putExtra(EXTRA_DESCRIPTION, description)
-        data.putExtra(EXTRA_PRIORITY, priority)
+        data.putExtra(EXTRA_PRIORITY, 5)
 
         setResult(RESULT_OK, data)
         finish()

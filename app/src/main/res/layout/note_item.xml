@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginRight="8dp"
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="6dp"
+            android:layout_height="100dp"
+            android:background="@color/orange"
+            />
 
         <TextView
             android:id="@+id/text_view_priority"
@@ -19,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="1"
+            android:padding="8dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             />
 
@@ -28,11 +34,13 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:maxLines="1"
+            android:textColor="@color/colorAccent"
             android:layout_toLeftOf="@+id/text_view_priority"
             android:layout_alignParentLeft="true"
             android:ellipsize="end"
             android:text="Title"
-            />
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"            />
 
         <TextView
             android:id="@+id/text_view_description"
@@ -40,6 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_title"
             android:text="Description"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
             />
 
     </RelativeLayout>
