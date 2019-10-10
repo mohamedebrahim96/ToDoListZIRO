@@ -3,6 +3,7 @@ package com.example.todolistziro.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
@@ -25,9 +26,19 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
         val currentNote = notes[position]
         noteHolder.textViewTitle.setText(currentNote.title)
         noteHolder.textViewDescription.setText(currentNote.description)
-        noteHolder.textViewPriority.setText(currentNote.priority.toString())
+        noteHolder.type.setBackgroundResource(getColor(currentNote.priority))
     }
 
+    fun getColor(priority: Int):Int {
+        if(priority == 0)
+            return R.color.orange
+        else if(priority == 1)
+            return R.color.purple
+        else if(priority == 2)
+            return R.color.blue
+        else
+            return R.color.orange
+    }
     fun setNotes(notes: List<Note>) {
         this.notes = notes
         notifyDataSetChanged()
@@ -44,12 +55,12 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
     inner class NoteHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewTitle: TextView
         val textViewDescription: TextView
-        val textViewPriority: TextView
+        val type: View
 
         init {
             textViewTitle = itemView.findViewById(R.id.text_view_title)
             textViewDescription = itemView.findViewById(R.id.text_view_description)
-            textViewPriority = itemView.findViewById(R.id.text_view_priority)
+            type = itemView.findViewById(R.id.type)
         }
 
     }

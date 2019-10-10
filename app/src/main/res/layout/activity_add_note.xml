@@ -38,6 +38,7 @@
         android:textColor="@color/gray" />
 
     <TextView
+        android:id="@+id/work"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -51,6 +52,7 @@
         android:layout_marginTop="15dp"
         android:drawableStart="@drawable/ic_circle_purple"
         android:drawablePadding="5dp"
+        android:id="@+id/personal"
         android:text="Personal" />
 
     <TextView
@@ -59,6 +61,7 @@
         android:layout_marginTop="15dp"
         android:drawableStart="@drawable/ic_circle_blue"
         android:drawablePadding="5dp"
+        android:id="@+id/health"
         android:text="Health" />
 
     <androidx.cardview.widget.CardView
