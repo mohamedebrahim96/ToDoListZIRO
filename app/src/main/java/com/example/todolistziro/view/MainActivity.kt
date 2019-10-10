@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setLayoutManager(LinearLayoutManager(this))
         recyclerView.setHasFixedSize(true)
 
-        val adapter = NoteAdapter()
+        val adapter = NoteAdapter(this)
         recyclerView.setAdapter(adapter)
 
 

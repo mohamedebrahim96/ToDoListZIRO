@@ -21,6 +21,8 @@ class AddNoteActivity : AppCompatActivity() {
         work.setOnClickListener { priority = 0 }
         personal.setOnClickListener { priority = 1 }
         health.setOnClickListener { priority = 2 }
+        addTask.setOnClickListener { saveNote() }
+
     }
 
     private fun saveNote() {

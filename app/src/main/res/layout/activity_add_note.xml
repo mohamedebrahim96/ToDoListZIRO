@@ -23,7 +23,7 @@
             android:inputType="text" />
 
         <View
-            android:layout_width="5dp"
+            android:layout_width="8dp"
             android:layout_height="match_parent"
             android:background="@color/orange"
             />
@@ -84,7 +84,7 @@
             android:inputType="textMultiLine" />
 
         <View
-            android:layout_width="5dp"
+            android:layout_width="8dp"
             android:layout_height="match_parent"
             android:background="@color/orange"
             />
@@ -97,5 +97,6 @@
         android:textColor="@android:color/white"
         android:background="@color/orange"
         android:text="Save Task"
+        android:id="@+id/addTask"
         />
 </LinearLayout>
