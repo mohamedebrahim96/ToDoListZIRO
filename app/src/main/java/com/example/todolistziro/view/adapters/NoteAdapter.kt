@@ -1,4 +1,4 @@
-package com.example.todolistziro.view
+package com.example.todolistziro.view.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

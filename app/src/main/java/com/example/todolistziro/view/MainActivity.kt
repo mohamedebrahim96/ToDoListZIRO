@@ -16,7 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistziro.R
 import com.example.todolistziro.data.Note
 import com.example.todolistziro.viewmodel.NoteViewModel
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home_notes.*
+
+import com.example.todolistziro.utils.Constants.Companion.EXTRA_DESCRIPTION
+import com.example.todolistziro.utils.Constants.Companion.EXTRA_PRIORITY
+import com.example.todolistziro.utils.Constants.Companion.EXTRA_TITLE
+import com.example.todolistziro.view.adapters.NoteAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button_add_note.setOnClickListener{
+        /*button_add_note.setOnClickListener{
             val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
             startActivityForResult(intent, ADD_NOTE_REQUEST)
         }
@@ -36,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         noteViewModel = ViewModelProviders.of(this@MainActivity).get(NoteViewModel::class.java)
 
-        val adapter = NoteAdapter(this,noteViewModel)
+        val adapter = NoteAdapter(this, noteViewModel)
         recyclerView.setAdapter(adapter)
 
 
@@ -89,9 +94,9 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            val title = data!!.getStringExtra(AddNoteActivity.EXTRA_TITLE)
-            val description = data!!.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION)
-            val priority = data!!.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 1)
+            val title = data!!.getStringExtra(EXTRA_TITLE)
+            val description = data!!.getStringExtra(EXTRA_DESCRIPTION)
+            val priority = data!!.getIntExtra(EXTRA_PRIORITY, 1)
 
             val note = Note(title, description, priority)
             noteViewModel!!.insert(note)
@@ -100,5 +105,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show()
         }
+    }*/
     }
 }

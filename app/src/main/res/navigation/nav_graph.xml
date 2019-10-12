@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeNotes">
+
+    <fragment
+        android:id="@+id/homeNotes"
+        android:name="com.example.todolistziro.view.fragments.HomeNotes"
+        android:label="fragment_home_notes"
+        tools:layout="@layout/fragment_home_notes" >
+        <action
+            android:id="@+id/action_mainFragment_to_secondFragment"
+            app:destination="@id/addNotes" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNotes"
+        android:name="com.example.todolistziro.view.fragments.AddNotes"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_add_notes" >
+        <argument
+            android:name="userName"
+            app:argType="string"
+            android:defaultValue="No name added" />
+    </fragment>
+</navigation>

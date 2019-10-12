@@ -7,14 +7,17 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.todolistziro.R
-import kotlinx.android.synthetic.main.activity_add_note.*
+import com.example.todolistziro.utils.Constants.Companion.EXTRA_DESCRIPTION
+import com.example.todolistziro.utils.Constants.Companion.EXTRA_PRIORITY
+import com.example.todolistziro.utils.Constants.Companion.EXTRA_TITLE
+import kotlinx.android.synthetic.main.fragment_add_notes.*
 
 class AddNoteActivity : AppCompatActivity() {
 
     var priority:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_note)
+        setContentView(R.layout.fragment_add_notes)
 
         getSupportActionBar()!!.setHomeAsUpIndicator(R.drawable.ic_close)
         setTitle("Add Task")
@@ -60,11 +63,5 @@ class AddNoteActivity : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
-    }
-
-    companion object {
-        val EXTRA_TITLE = "EXTRA_TITLE"
-        val EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION"
-        val EXTRA_PRIORITY = "EXTRA_PRIORITY"
     }
 }
