@@ -1,110 +1,48 @@
-package com.example.todolistziro.view
+package com.example.todolistziro.view.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
 import com.example.todolistziro.R
-import com.example.todolistziro.data.Note
-import com.example.todolistziro.viewmodel.NoteViewModel
-import kotlinx.android.synthetic.main.fragment_home_notes.*
-
-import com.example.todolistziro.utils.Constants.Companion.EXTRA_DESCRIPTION
-import com.example.todolistziro.utils.Constants.Companion.EXTRA_PRIORITY
-import com.example.todolistziro.utils.Constants.Companion.EXTRA_TITLE
-import com.example.todolistziro.view.adapters.NoteAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val ADD_NOTE_REQUEST = 1
-
-    private var noteViewModel: NoteViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*button_add_note.setOnClickListener{
-            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
-            startActivityForResult(intent, ADD_NOTE_REQUEST)
+
+        setSupportActionBar(toolbar)
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        setupBottomNavMenu(navController)
+        setupNavigationController(navController)
+    }
+
+
+    private fun setupBottomNavMenu(navController: NavController) {
+        bottom_nav?.let {
+            NavigationUI.setupWithNavController(it, navController)
         }
-
-        recyclerView.setLayoutManager(LinearLayoutManager(this))
-        recyclerView.setHasFixedSize(true)
-        noteViewModel = ViewModelProviders.of(this@MainActivity).get(NoteViewModel::class.java)
-
-        val adapter = NoteAdapter(this, noteViewModel)
-        recyclerView.setAdapter(adapter)
-
-
-        noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>>{
-            override fun onChanged(@Nullable notes: List<Note>) {
-                // Update recycler view
-                adapter.setNotes(notes)
-            }
-        })
-
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
-            0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ) {
-            // For drag and drop
-            override fun onMove(
-                @NonNull recyclerView: RecyclerView,
-                @NonNull viewHolder: RecyclerView.ViewHolder,
-                @NonNull viewHolder1: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
-
-            override fun onSwiped(@NonNull viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                noteViewModel!!.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()))
-                Toast.makeText(this@MainActivity, "Note deleted", Toast.LENGTH_SHORT).show()
-            }
-        }).attachToRecyclerView(recyclerView)
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val menuInflater = menuInflater
+    private fun setupNavigationController(navController: NavController) {
+        NavigationUI.setupActionBarWithNavController(this, navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.todolist_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.delete_all_notes -> {
-                noteViewModel!!.deleteAllNotes()
-                Toast.makeText(this, "All notes deleted", Toast.LENGTH_SHORT).show()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int,data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            val title = data!!.getStringExtra(EXTRA_TITLE)
-            val description = data!!.getStringExtra(EXTRA_DESCRIPTION)
-            val priority = data!!.getIntExtra(EXTRA_PRIORITY, 1)
-
-            val note = Note(title, description, priority)
-            noteViewModel!!.insert(note)
-
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show()
-        }
-    }*/
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        val navigated = NavigationUI.onNavDestinationSelected(item, navController)
+        return navigated || super.onOptionsItemSelected(item)
     }
 }
