@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/destination_home"
+        android:icon="@drawable/ic_grid"
+        android:title="Home" />
+    <item
+        android:id="@+id/destination_add_note"
+        android:icon="@drawable/ic_add"
+        android:title="Add Task" />
+    <item
+        android:id="@+id/destination_all_notes"
+        android:icon="@drawable/ic_note"
+        android:title="All Notes" />
+</menu>
