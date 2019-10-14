@@ -6,15 +6,15 @@
   [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-HyperTrack%20Live-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/5754) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/licenses/MIT) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-# ToDoListZIRO
+# ToDoList ZIRORIDE
 ZIRO MEANS ZERO No more cutty commissions On our platform, we don’t charge Captains any per trip commissions—zero. When you drive with us we’re on equal footing, so why should we take away from what you earn? Plus, we have the lowest booking fee compared to those being collected by other ridesharing companies.
 
 
 ### Introduction
 
-- This is the source code of ZiroRide Android app.
+- This is the source code of ZiroRide Android app Task.
 - All icons are from (or generate from) the [icon finder](https://www.iconfinder.com/).
-- This repository helps you in order to create lite browser with small size apk.
+- This repository is a Task for ZiroRide.
 - you can fork this repo hence make it great.
 
 ### Start Working
@@ -27,8 +27,7 @@ Notice: If you have something wrong with build, try close instant run in Android
 
 ### Screenshots
 
-<img src="https://github.com/mohamedebrahim96/ToDoListZIRO/raw/dev/UI-UX/profile%202.jpg" width="800">
-<img src="https://github.com/mohamedebrahim96/ToDoListZIRO/raw/dev/UI-UX/profile%203.jpg" width="800">
+<img src="https://github.com/mohamedebrahim96/ToDoListZIRO/raw/dev/UI-UX/profile%202.jpg" width="800"><img src="https://github.com/mohamedebrahim96/ToDoListZIRO/raw/dev/UI-UX/profile%203.jpg" width="800">
 
 
 
