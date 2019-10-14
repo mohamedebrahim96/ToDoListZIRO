@@ -50,7 +50,14 @@ class AllNotes : BaseFragment() {
         noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>> {
             override fun onChanged(@Nullable notes: List<Note>) {
                 // Update recycler view
-                adapter.setNotes(notes)
+                if(notes.size == 0){
+                    recyclerView.visibility = View.GONE
+                    empty_layout.visibility = View.VISIBLE
+                }else{
+                    recyclerView.visibility = View.VISIBLE
+                    empty_layout.visibility = View.GONE
+                    adapter.setNotes(notes)
+                }
             }
         })
 
