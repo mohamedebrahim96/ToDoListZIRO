@@ -1,14 +1,14 @@
+
+
+![Logo](UI-UX/logo-ziro.svg)
+
+
+  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-HyperTrack%20Live-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/5754) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/licenses/MIT) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 # ToDoListZIRO
 ZIRO MEANS ZERO No more cutty commissions On our platform, we don’t charge Captains any per trip commissions—zero. When you drive with us we’re on equal footing, so why should we take away from what you earn? Plus, we have the lowest booking fee compared to those being collected by other ridesharing companies.
 
-
-===================================================
-
-![Logo](UI-UX/logo.png)
-
-# Ziro Ride todolist (Android)
-
-  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-HyperTrack%20Live-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/5754) [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/licenses/MIT) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Introduction
 
