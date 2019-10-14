@@ -16,7 +16,10 @@ ZIRO MEANS ZERO No more cutty commissions On our platform, we don’t charge Cap
 - All icons are from (or generate from) the [icon finder](https://www.iconfinder.com/).
 - This repository is a Task for ZiroRide.
 - you can fork this repo hence make it great.
-
+- Room + liveData + ViewModel
+- Jetpack Android
+- RxJava
+- single app activity structure
 ### Start Working
 
 Check out this repository and open the project with [Android Studio](https://developer.android.com/studio/index.html "Download Android Studio").
