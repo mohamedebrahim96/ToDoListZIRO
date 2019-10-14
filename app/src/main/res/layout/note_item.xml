@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginRight="8dp"
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
-
-        <TextView
-            android:id="@+id/text_view_priority"
-            android:layout_width="wrap_content"
+        android:layout_height="110dp"
+        >
+        <View
+            android:id="@+id/type"
+            android:layout_width="8dp"
             android:layout_height="wrap_content"
+            android:background="@color/orange"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:text="1"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:padding="8dp"
+            android:src="@drawable/ic_close"
+            android:id="@+id/close"
             />
 
         <TextView
             android:id="@+id/text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:maxLines="1"
-            android:layout_toLeftOf="@+id/text_view_priority"
+            android:textSize="22dp"
+            android:textStyle="bold"
             android:layout_alignParentLeft="true"
             android:ellipsize="end"
+            android:layout_marginStart="15dp"
             android:text="Title"
+            android:layout_marginTop="10dp"
             />
 
         <TextView
@@ -40,7 +49,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_title"
             android:text="Description"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
             />
+        <TextView
+            android:layout_below="@+id/text_view_description"
+            android:id="@+id/priority"
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_circle_orange"
+            android:drawablePadding="5dp"
+            android:text="Work" />
 
     </RelativeLayout>
 

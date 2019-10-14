@@ -1,46 +1,53 @@
-package com.example.todolistziro.view
+package com.example.todolistziro.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todolistziro.R
 import com.example.todolistziro.data.Note
+import com.example.todolistziro.view.adapters.NoteAdapter
 import com.example.todolistziro.viewmodel.NoteViewModel
+import kotlinx.android.synthetic.main.fragment_all_notes.*
+import androidx.appcompat.app.AppCompatActivity
+import com.example.todolistziro.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
 
-    private val ADD_NOTE_REQUEST = 1
+class AllNotes : BaseFragment() {
 
     private var noteViewModel: NoteViewModel? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        button_add_note.setOnClickListener{
-            val intent = Intent(this@MainActivity, AddNoteActivity::class.java)
-            startActivityForResult(intent, ADD_NOTE_REQUEST)
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        mView = inflater.inflate(R.layout.fragment_all_notes, container, false)
 
-        recyclerView.setLayoutManager(LinearLayoutManager(this))
+        return mView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        recyclerView.setLayoutManager(LinearLayoutManager(activity))
         recyclerView.setHasFixedSize(true)
+        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
-        val adapter = NoteAdapter()
+        val adapter = NoteAdapter(this.activity!!, noteViewModel)
         recyclerView.setAdapter(adapter)
 
 
-        noteViewModel = ViewModelProviders.of(this@MainActivity).get(NoteViewModel::class.java)
-        noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>>{
+        noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>> {
             override fun onChanged(@Nullable notes: List<Note>) {
                 // Update recycler view
                 adapter.setNotes(notes)
@@ -62,13 +69,13 @@ class MainActivity : AppCompatActivity() {
 
             override fun onSwiped(@NonNull viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 noteViewModel!!.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()))
-                Toast.makeText(this@MainActivity, "Note deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Note deleted", Toast.LENGTH_SHORT).show()
             }
         }).attachToRecyclerView(recyclerView)
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.todolist_menu, menu)
         return true
@@ -83,22 +90,24 @@ class MainActivity : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
-    }
+    }*/
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int,data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            val title = data!!.getStringExtra(AddNoteActivity.EXTRA_TITLE)
-            val description = data!!.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION)
-            val priority = data!!.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 1)
+        /*if (requestCode == activity.ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
+            val title = data!!.getStringExtra(EXTRA_TITLE)
+            val description = data!!.getStringExtra(EXTRA_DESCRIPTION)
+            val priority = data!!.getIntExtra(EXTRA_PRIORITY, 1)
 
             val note = Note(title, description, priority)
             noteViewModel!!.insert(note)
 
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.activity, "Note saved", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show()
-        }
+            Toast.makeText(this.activity, "Note not saved", Toast.LENGTH_SHORT).show()
+        }*/
     }
+
+
 }
