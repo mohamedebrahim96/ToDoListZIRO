@@ -1,0 +1,24 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape android:useLevel="false"
+            android:innerRadiusRatio="2.0"
+            android:shape="ring"
+            android:thickness="12dp">
+            <solid android:color="#ff9b4c" />
+            <corners android:radius="50dp"/>
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <shape
+            android:useLevel="true"
+            android:innerRadiusRatio="2.0"
+            android:shape="ring"
+            android:thickness="12dp">
+            <solid android:color="#fff" />
+        </shape>
+        <!--
+        <scale
+              android:drawable="@drawable/progressbar_round_corner"
+              android:scaleWidth="98%" /> -->
+    </item>
+</layer-list>
