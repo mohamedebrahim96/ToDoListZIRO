@@ -4,7 +4,7 @@ ZIRO MEANS ZERO No more cutty commissions On our platform, we don’t charge Cap
 
 ===================================================
 
-![Logo](UI/UX/logo.png)
+![Logo](UI-UX/logo.png)
 
 # Ziro Ride todolist (Android)
 
