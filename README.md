@@ -29,7 +29,9 @@ Notice: If you have something wrong with build, try close instant run in Android
 
 <img src="https://github.com/mohamedebrahim96/ToDoListZIRO/raw/dev/UI-UX/profile%202.jpg" width="800"><img src="https://github.com/mohamedebrahim96/ToDoListZIRO/raw/dev/UI-UX/profile%203.jpg" width="800">
 
-
+### Git Versioning Structure 
+A Version Control System usually has three core functionalities, all of which Linus built into Git. It must be able store content, track changes to said content (all history including merge metadata), and optionally distribute the content and commit history with project collaborators.
+<img src="https://github.com/mohamedebrahim96/ToDoListZIRO/raw/dev/UI-UX/gitkraken.JPG" width="800">
 
 ###  Download
 
