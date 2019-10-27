@@ -4,33 +4,43 @@ import android.app.Application
 import androidx.annotation.NonNull
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.example.todolistziro.data.Note
 import com.example.todolistziro.data.NoteRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class NoteViewModel(@NonNull application: Application) : AndroidViewModel(application) {
 
-    val repository: NoteRepository
+    private val repository: NoteRepository = NoteRepository(application)
     val allNotes: LiveData<List<Note>>
 
     init {
-        repository = NoteRepository(application)
         allNotes = repository.allNotes
     }
 
     fun insert(note: Note) {
-        repository.insert(note)
+        viewModelScope.launch {
+            repository.insert(note)
+        }
     }
 
     fun update(note: Note) {
-        repository.update(note)
+        viewModelScope.launch {
+            repository.update(note)
+        }
     }
 
-    fun delete(note: Note) {
-        repository.delete(note)
+    fun delete(noteId: Int) {
+        viewModelScope.launch {
+            repository.delete(noteId)
+        }
     }
 
     fun deleteAllNotes() {
-        repository.deleteAllNotes()
+        viewModelScope.launch {
+            repository.deleteAllNotes()
+        }
     }
 }

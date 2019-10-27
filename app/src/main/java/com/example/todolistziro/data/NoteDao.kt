@@ -6,18 +6,18 @@ import androidx.room.*
 @Dao
 interface NoteDao {
 
-    @get:Query("Select * from note_table order by priority desc")
+    @get:Query("SELECT * FROM note_table ORDER BY priority DESC")
     val allNotes: LiveData<List<Note>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(note: Note)
 
     @Update
-    fun update(note: Note)
+    fun update(note: Note): Int
 
-    @Delete
-    fun delete(note: Note)
+    @Query("DELETE FROM note_table WHERE id =:noteId")
+    fun delete(noteId: Int): Int
 
-    @Query("Delete from note_table")
+    @Query("DELETE FROM note_table")
     fun deleteAllNotes()
 }

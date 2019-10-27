@@ -39,18 +39,18 @@ class AllNotes : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recyclerView.setLayoutManager(LinearLayoutManager(activity))
+        recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
         val adapter = NoteAdapter(this.activity!!, noteViewModel)
-        recyclerView.setAdapter(adapter)
+        recyclerView.adapter = adapter
 
 
         noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>> {
             override fun onChanged(@Nullable notes: List<Note>) {
                 // Update recycler view
-                if(notes.size == 0){
+                if(notes.isEmpty()){
                     recyclerView.visibility = View.GONE
                     empty_layout.visibility = View.VISIBLE
                 }else{
@@ -75,7 +75,7 @@ class AllNotes : BaseFragment() {
             }
 
             override fun onSwiped(@NonNull viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                noteViewModel!!.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()))
+                noteViewModel!!.delete(adapter.getNoteAt(viewHolder.adapterPosition))
                 Toast.makeText(activity, "Note deleted", Toast.LENGTH_SHORT).show()
             }
         }).attachToRecyclerView(recyclerView)

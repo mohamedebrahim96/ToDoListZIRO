@@ -38,27 +38,23 @@ class HomeNotes : BaseFragment() {
 
     private fun getData() {
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
-        noteViewModel!!.allNotes.observe(this, object : Observer<List<Note>> {
-            override fun onChanged(@Nullable notes: List<Note>) {
-                var personalCounter:Int = 0
-                var workCounter:Int = 0
-                var healthCounter:Int = 0
+        noteViewModel!!.allNotes.observe(this,
+            Observer<List<Note>> { notes ->
+                var personalCounter = 0
+                var workCounter = 0
+                var healthCounter = 0
 
                 for (i in notes){
-                    if(i.priority == 0)
-                        workCounter++
-                    else if(i.priority == 1)
-                        personalCounter++
-                    else if(i.priority == 2)
-                        healthCounter++
+                    when {
+                        i.priority == 0 -> workCounter++
+                        i.priority == 1 -> personalCounter++
+                        i.priority == 2 -> healthCounter++
+                    }
                 }
-                personal_value_textview.setText(personalCounter.toString())
-                work_value_textview.setText(workCounter.toString())
-                health_value_textview.setText(healthCounter.toString())
-
-
-            }
-        })
+                personal_value_textview.text = personalCounter.toString()
+                work_value_textview.text = workCounter.toString()
+                health_value_textview.text = healthCounter.toString()
+            })
     }
 
     private fun animation() {

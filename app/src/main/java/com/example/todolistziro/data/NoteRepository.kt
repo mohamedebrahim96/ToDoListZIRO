@@ -3,8 +3,11 @@ package com.example.todolistziro.data
 import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class NoteRepository(application: Application) {
+class NoteRepository(application: Application, private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO) {
     private val noteDao: NoteDao
     val allNotes: LiveData<List<Note>>
 
@@ -14,56 +17,19 @@ class NoteRepository(application: Application) {
         allNotes = noteDao.allNotes
     }
 
-    fun insert(note: Note) {
-        InsertNoteAsyncTask(noteDao).execute(note)
+    suspend fun insert(note: Note) = withContext(ioDispatcher) {
+        noteDao.insert(note)
     }
 
-    fun update(note: Note) {
-        UpdateNoteAsyncTask(noteDao).execute(note)
+    suspend fun update(note: Note) = withContext<Unit>(ioDispatcher) {
+        noteDao.update(note)
     }
 
-    fun delete(note: Note) {
-        DeleteNoteAsyncTask(noteDao).execute(note)
+    suspend fun delete(noteId: Int) = withContext<Unit>(ioDispatcher) {
+        noteDao.delete(noteId)
     }
 
-    fun deleteAllNotes() {
-        DeleteAllNoteAsyncTask(noteDao).execute()
+    suspend fun deleteAllNotes() = withContext(ioDispatcher) {
+        noteDao.deleteAllNotes()
     }
-
-    private class InsertNoteAsyncTask(private val noteDao: NoteDao) :
-        AsyncTask<Note, Void, Void>() {
-
-        override fun doInBackground(vararg notes: Note): Void? {
-            noteDao.insert(notes[0])
-            return null
-        }
-    }
-
-    private class UpdateNoteAsyncTask(private val noteDao: NoteDao) :
-        AsyncTask<Note, Void, Void>() {
-
-        override fun doInBackground(vararg notes: Note): Void? {
-            noteDao.update(notes[0])
-            return null
-        }
-    }
-
-    private class DeleteNoteAsyncTask(private val noteDao: NoteDao) :
-        AsyncTask<Note, Void, Void>() {
-
-        override fun doInBackground(vararg notes: Note): Void? {
-            noteDao.delete(notes[0])
-            return null
-        }
-    }
-
-    private class DeleteAllNoteAsyncTask(private val noteDao: NoteDao) :
-        AsyncTask<Void, Void, Void>() {
-
-        override fun doInBackground(vararg voids: Void): Void? {
-            noteDao.deleteAllNotes()
-            return null
-        }
-    }
-
 }
